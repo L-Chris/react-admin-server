@@ -1,0 +1,27 @@
+{
+  "name": "react-admin-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/L-Chris/react-admin-server",
+  "author": "L-Chris <563303226@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "pm2 start index.js"
+  },
+  "dependencies": {
+    "debug": "^4.0.1",
+    "glob": "^7.1.3",
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "mysql2": "^1.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
