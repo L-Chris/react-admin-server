@@ -11,8 +11,8 @@ module.exports = class UserController {
   }
 
   static async add (ctx, next) {
-    const { query } = ctx
-    const data = await UserModel.add(query)
+    const { body } = ctx.request
+    const data = await UserModel.add(body)
     ctx.success({
       data
     })

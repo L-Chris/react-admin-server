@@ -1,11 +1,15 @@
 const BaseModel = require('./Base')
 
-module.exports = class UserModel extends BaseModel {
+class UserModel extends BaseModel {
   static async find () {
-    return BaseModel.query(`SELECT * from users;`)
+    return this.query(`select * from users`)
   }
 
   static add (params) {
-    return BaseModel.query('INSERT INTO users SET ?;', params)
+    return this.insert(params)
   }
 }
+
+UserModel.$table = 'users'
+
+module.exports = UserModel

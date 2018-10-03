@@ -11,6 +11,8 @@ const userTableSql = `
     name VARCHAR(100) NOT NULL COMMENT '名称',
     account VARCHAR(100) NOT NULL COMMENT '账户',
     password VARCHAR(100) NOT NULL COMMENT '密码',
+    phone VARCHAR(100) NOT NULL COMMENT '手机',
+    email VARCHAR(100) NOT NULL COMMENT '邮箱',
     createTime VARCHAR(100) NOT NULL COMMENT '创建时间',
     PRIMARY KEY ( id )
   )
