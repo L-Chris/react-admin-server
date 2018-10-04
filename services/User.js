@@ -1,4 +1,4 @@
-const {BaseService} = require('../lib/seed')
+const { BaseService } = require('tiy')
 
 class UserService extends BaseService {
   find () {

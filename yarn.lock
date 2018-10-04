@@ -1838,6 +1838,13 @@ timed-out@^4.0.0:
   version "4.0.1"
   resolved "https://registry.npmjs.org/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
 
+tiy@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/tiy/-/tiy-0.0.1.tgz#1df7c4500fd4edafedda265a6adbd84dc88110dc"
+  dependencies:
+    glob "^7.1.3"
+    koa-router "^7.4.0"
+
 to-object-path@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/to-object-path/-/to-object-path-0.3.0.tgz#297588b7b0e7e0ac08e04e672f85c1f4999e17af"

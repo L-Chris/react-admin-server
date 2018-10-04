@@ -1,4 +1,4 @@
-const {BaseController} = require('../lib/seed')
+const {BaseController} = require('tiy')
 
 module.exports = class UserController extends BaseController {
   async find () {
