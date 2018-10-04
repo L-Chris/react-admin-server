@@ -1,11 +1,4 @@
-const getPool = require('.')
-
-async function createTable (sql) {
-  const pool = await getPool()
-  return pool.query(sql, [])
-}
-
-const userTableSql = `
+exports.userTableSql = `
   create table if not exists users(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL COMMENT '名称',
@@ -18,7 +11,7 @@ const userTableSql = `
   )
 `
 
-const menuTableSql = `
+exports.menuTableSql = `
   create table if not exists menus(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL COMMENT '名称',
@@ -27,7 +20,7 @@ const menuTableSql = `
   )
 `
 
-const orderTableSql = `
+exports.orderTableSql = `
   create table if not exists orders(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL COMMENT '名称',
@@ -38,7 +31,7 @@ const orderTableSql = `
   )
 `
 
-const shopTableSql = `
+exports.shopTableSql = `
   create table if not exists shops(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL COMMENT '名称',
@@ -46,7 +39,3 @@ const shopTableSql = `
     PRIMARY KEY ( id )
   )
 `
-
-const tables = [userTableSql, menuTableSql, orderTableSql, shopTableSql]
-
-tables.forEach(_ => createTable(_))

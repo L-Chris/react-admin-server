@@ -3,9 +3,8 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const json = require('koa-json')
 const logger = require('koa-logger')
+const { initSeed } = require('./lib/seed')
 const interceptor = require('./middlewares/interceptor')
-const router = require('./router')
-require('./models/init')
 
 const app = new Koa()
 
@@ -17,7 +16,6 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 
-
 // logger
 app.use(async (ctx, next) => {
   let start = new Date()
@@ -27,6 +25,6 @@ app.use(async (ctx, next) => {
 })
 
 app.use(interceptor)
-app.use(router.routes())
+app.use(initSeed)
 
 module.exports = app

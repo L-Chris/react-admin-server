@@ -1,19 +1,19 @@
-const UserModel = require('../models/User')
+const {BaseController} = require('../lib/seed')
 
-module.exports = class UserController {
-  static async find (ctx, next) {
-    const [data] = await UserModel.find()
-    ctx.success({
+module.exports = class UserController extends BaseController {
+  async find () {
+    const [data] = await this.service.user.find()
+    this.ctx.success({
       data: {
         list: data
       }
     })
   }
 
-  static async add (ctx, next) {
-    const { body } = ctx.request
-    const data = await UserModel.add(body)
-    ctx.success({
+  async add () {
+    const { body } = this.ctx.request
+    const data = await this.service.user.add(body)
+    this.ctx.success({
       data
     })
   }

@@ -1,19 +1,19 @@
-const OrderModel = require('../models/Order')
+const {BaseController} = require('../lib/seed')
 
-module.exports = class OrderController {
-  static async find (ctx, next) {
-    const [data] = await OrderModel.find()
-    ctx.success({
+module.exports = class OrderController extends BaseController {
+  async find () {
+    const [data] = await this.service.order.find()
+    this.ctx.success({
       data: {
         list: data
       }
     })
   }
 
-  static async add (ctx, next) {
-    const { query } = ctx
-    const data = await OrderModel.add(query)
-    ctx.success({
+  async add () {
+    const { query } = this.ctx
+    const data = await this.service.order.add(query)
+    this.ctx.success({
       data
     })
   }

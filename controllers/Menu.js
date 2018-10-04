@@ -1,19 +1,19 @@
-const MenuModel = require('../models/Menu')
+const {BaseController} = require('../lib/seed')
 
-module.exports = class MenuController {
-  static async find (ctx, next) {
-    const [data] = await MenuModel.find()
-    ctx.success({
+module.exports = class MenuController extends BaseController {
+  async find () {
+    const [data] = await this.service.menu.find()
+    this.ctx.success({
       data: {
         list: data
       }
     })
   }
 
-  static async add (ctx, next) {
-    const { query } = ctx
-    const data = await MenuModel.add(query)
-    ctx.success({
+  async add () {
+    const { query } = this.ctx
+    const data = await this.service.menu.add(query)
+    this.ctx.success({
       data
     })
   }
