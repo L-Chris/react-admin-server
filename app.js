@@ -3,7 +3,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const json = require('koa-json')
 const logger = require('koa-logger')
-const { initSeed } = require('./lib/seed')
+const { Seed } = require('./lib/seed')
 const interceptor = require('./middlewares/interceptor')
 
 const app = new Koa()
@@ -25,6 +25,6 @@ app.use(async (ctx, next) => {
 })
 
 app.use(interceptor)
-app.use(initSeed)
+app.use(Seed)
 
 module.exports = app
