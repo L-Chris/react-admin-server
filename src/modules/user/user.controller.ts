@@ -1,4 +1,5 @@
 import { Get, Controller } from '@nestjs/common';
+import { Cookie } from 'nest-decorators'
 import { UserService } from './user.service';
 import { User } from './user.entity';
 
@@ -7,7 +8,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('list')
-  async findAll(): Promise<User[]> {
+  async findAll(@Cookie() cookie): Promise<User[]> {
+    console.log(cookie)
     return await this.userService.findAll();
   }
 }

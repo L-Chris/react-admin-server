@@ -16,7 +16,7 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@nestjs/common@^5.1.0":
+"@nestjs/common@^5.1.0", "@nestjs/common@^5.3.11":
   version "5.3.11"
   resolved "https://registry.npmjs.org/@nestjs/common/-/common-5.3.11.tgz#ab495bc30b1635d71754e8b577f1e40443e864f8"
   dependencies:
@@ -76,12 +76,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/cookie-parser@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.npmjs.org/@types/cookie-parser/-/cookie-parser-1.4.1.tgz#e88a39c41960f31549b4c52dd8620aa4a2feb4bb"
-  dependencies:
-    "@types/express" "*"
-
 "@types/cookiejar@*":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@types/cookiejar/-/cookiejar-2.1.0.tgz#4b7daf2c51696cfc70b942c11690528229d1a1ce"
@@ -98,7 +92,7 @@
     "@types/node" "*"
     "@types/range-parser" "*"
 
-"@types/express@*", "@types/express@^4.16.0":
+"@types/express@^4.16.0":
   version "4.16.0"
   resolved "https://registry.npmjs.org/@types/express/-/express-4.16.0.tgz#6d8bc42ccaa6f35cf29a2b7c3333cb47b5a32a19"
   dependencies:
@@ -1178,18 +1172,11 @@ convert-source-map@^1.4.0, convert-source-map@^1.5.1:
   dependencies:
     safe-buffer "~5.1.1"
 
-cookie-parser@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/cookie-parser/-/cookie-parser-1.4.3.tgz#0fe31fa19d000b95f4aadf1f53fdc2b8a203baa5"
-  dependencies:
-    cookie "0.3.1"
-    cookie-signature "1.0.6"
-
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
 
-cookie@0.3.1:
+cookie@0.3.1, cookie@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
@@ -3637,6 +3624,14 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
 
+nest-decorators@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/nest-decorators/-/nest-decorators-0.0.3.tgz#447cb511f0cfbe8828e2d4e22cfb29c7322f6b50"
+  dependencies:
+    "@nestjs/common" "^5.3.11"
+    cookie "^0.3.1"
+    rxjs "^6.3.3"
+
 next-tick@1:
   version "1.0.0"
   resolved "https://registry.npmjs.org/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
@@ -4508,7 +4503,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.2.2:
+rxjs@^6.2.2, rxjs@^6.3.3:
   version "6.3.3"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
   dependencies:

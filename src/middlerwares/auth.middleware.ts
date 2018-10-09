@@ -13,15 +13,15 @@ export class AuthMiddleware implements NestMiddleware {
 
   resolve () {
     return async (req, res, next) => {
-      const { token } = req.cookies
-      if (!token) return res.redirect('/login');
-      const userInfo = jwt.verify(token, 'react_admin')
-      const user = await this.userRepository.findOne({
-        where: {
-          id: userInfo.id,
-          account: userInfo.account
-        }
-      })
+      // const { token } = req.cookies
+      // if (!token) return res.redirect('/login');
+      // const userInfo = jwt.verify(token, 'react_admin')
+      // const user = await this.userRepository.findOne({
+      //   where: {
+      //     id: userInfo.id,
+      //     account: userInfo.account
+      //   }
+      // })
       await next()
     }
   }
