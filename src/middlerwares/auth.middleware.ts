@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken'
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import * as cookieParser from 'cookie'
+import { Injectable, NestMiddleware, HttpStatus } from '@nestjs/common';
 import { User } from '../modules/user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -13,16 +14,25 @@ export class AuthMiddleware implements NestMiddleware {
 
   resolve () {
     return async (req, res, next) => {
-      // const { token } = req.cookies
-      // if (!token) return res.redirect('/login');
-      // const userInfo = jwt.verify(token, 'react_admin')
-      // const user = await this.userRepository.findOne({
-      //   where: {
-      //     id: userInfo.id,
-      //     account: userInfo.account
-      //   }
-      // })
+      const { token } = cookieParser.parse(req.headers.cookie || '')
+      if (!token) return this.handleBadRequest(req, res)
+      const userInfo: any = jwt.verify(token, 'react_admin')
+      const user = await this.userRepository.findOne({
+        where: {
+          id: userInfo.id,
+          account: userInfo.account
+        }
+      })
+      if (!user) return this.handleBadRequest(req, res)
       await next()
     }
+  }
+
+  handleBadRequest (req, res) {
+    res.status(HttpStatus.UNAUTHORIZED).json({
+      data: {},
+      status: 401,
+      message: 'UNAUTHORIZED'
+    })
   }
 }

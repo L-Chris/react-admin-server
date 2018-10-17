@@ -76,6 +76,10 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cookie@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.npmjs.org/@types/cookie/-/cookie-0.3.1.tgz#720a756ea8e760a258708b52441bd341f1ef4296"
+
 "@types/cookiejar@*":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@types/cookiejar/-/cookiejar-2.1.0.tgz#4b7daf2c51696cfc70b942c11690528229d1a1ce"
@@ -107,6 +111,12 @@
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
+
+"@types/jsonwebtoken@^7.2.8":
+  version "7.2.8"
+  resolved "https://registry.npmjs.org/@types/jsonwebtoken/-/jsonwebtoken-7.2.8.tgz#8d199dab4ddb5bba3234f8311b804d2027af2b3a"
+  dependencies:
+    "@types/node" "*"
 
 "@types/mime@*":
   version "2.0.0"
