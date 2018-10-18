@@ -14,9 +14,19 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async findOne(token): Promise<User> {
+  async findOne({ id }): Promise<User> {
+    return await this.userRepository.findOne({
+      where: { id }
+    })
+  }
+
+  async findCurrent(token: string): Promise<User> {
     return await this.userRepository.findOne({
       where: { token }
     })
+  }
+
+  async save (body): Promise<User> {
+    return await this.userRepository.save(body)
   }
 }

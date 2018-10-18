@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken'
 import * as cookieParser from 'cookie'
-import { Injectable, NestMiddleware, HttpStatus } from '@nestjs/common';
+import { Injectable, NestMiddleware, HttpException, HttpStatus } from '@nestjs/common';
 import { User } from '../modules/user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -15,7 +15,8 @@ export class AuthMiddleware implements NestMiddleware {
   resolve () {
     return async (req, res, next) => {
       const { token } = cookieParser.parse(req.headers.cookie || '')
-      if (!token) return this.handleBadRequest(req, res)
+
+      if (!token) throw new HttpException('Forbiden', 403)
       const userInfo: any = jwt.verify(token, 'react_admin')
       const user = await this.userRepository.findOne({
         where: {
@@ -23,16 +24,9 @@ export class AuthMiddleware implements NestMiddleware {
           account: userInfo.account
         }
       })
-      if (!user) return this.handleBadRequest(req, res)
+
+      if (!user) throw new HttpException('Forbiden', 403)
       await next()
     }
-  }
-
-  handleBadRequest (req, res) {
-    res.status(HttpStatus.UNAUTHORIZED).json({
-      data: {},
-      status: 401,
-      message: 'UNAUTHORIZED'
-    })
   }
 }
