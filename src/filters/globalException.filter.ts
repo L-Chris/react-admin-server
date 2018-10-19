@@ -1,4 +1,5 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from '@nestjs/common'
+import { isString } from 'util';
 
 @Catch(HttpException)
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -10,7 +11,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       .json({
         data: null,
         status: exception.getStatus(),
-        message: exception.message,
+        message: isString(exception.message) ? exception.message : exception.message.message,
         timestamp: Date.now()
       })
   }

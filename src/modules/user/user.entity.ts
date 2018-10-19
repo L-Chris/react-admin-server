@@ -8,13 +8,13 @@ export class User {
   @Column({ length: 20 })
   name: string;
 
-  @Column({ length: 30 })
+  @Column({ length: 30, unique: true })
   account: string;
 
-  @Column({ length: 13 })
+  @Column({ length: 13, unique: true })
   phone: string;
 
-  @Column()
+  @Column({ length: 50, unique: true })
   email: string;
 
   @Column()

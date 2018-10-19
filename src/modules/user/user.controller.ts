@@ -1,7 +1,10 @@
 import { Get, Post, Controller, Query, Body } from '@nestjs/common';
+import { Cookie } from 'nest-decorators';
 import { UserService } from './user.service';
 import { User } from './user.entity';
-import { Cookie } from 'nest-decorators';
+import { ValidationPipe } from 'pipes/validation.pipe';
+import { UpdateUserDto } from './update-user.dto';
+import { CreateUserDto } from './create-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -24,8 +27,13 @@ export class UserController {
     return await this.userService.findCurrent(token);
   }
 
-  @Post('save')
-  async save(@Body() body) {
-    return await this.userService.save(body);
+  @Post('update')
+  async update(@Body(new ValidationPipe()) updateUserDto: UpdateUserDto) {
+    return await this.userService.save(updateUserDto)
+  }
+
+  @Post('add')
+  async add(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
+    return await this.userService.save(createUserDto)
   }
 }
