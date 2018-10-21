@@ -16,7 +16,7 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@nestjs/common@^5.1.0", "@nestjs/common@^5.3.11":
+"@nestjs/common@^5.3.11":
   version "5.3.11"
   resolved "https://registry.npmjs.org/@nestjs/common/-/common-5.3.11.tgz#ab495bc30b1635d71754e8b577f1e40443e864f8"
   dependencies:
@@ -26,9 +26,19 @@
     multer "1.3.0"
     uuid "3.3.2"
 
-"@nestjs/core@^5.1.0":
-  version "5.3.11"
-  resolved "https://registry.npmjs.org/@nestjs/core/-/core-5.3.11.tgz#ac57fd0aa270e2d2dc84134905a5c0b434284620"
+"@nestjs/common@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.npmjs.org/@nestjs/common/-/common-5.4.0.tgz#74aa7da0d6931349b0a2cbe813b83ad77c2797ec"
+  dependencies:
+    axios "0.18.0"
+    cli-color "1.2.0"
+    deprecate "1.0.0"
+    multer "1.3.0"
+    uuid "3.3.2"
+
+"@nestjs/core@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.npmjs.org/@nestjs/core/-/core-5.4.0.tgz#0c082ef019b5e435a9330feb3fe0101f3978af4e"
   dependencies:
     "@nuxtjs/opencollective" "0.1.0"
     body-parser "1.18.3"
@@ -41,9 +51,9 @@
     path-to-regexp "2.2.1"
     uuid "3.3.2"
 
-"@nestjs/testing@^5.1.0":
-  version "5.3.11"
-  resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-5.3.11.tgz#6ff5a5dc3d550b7482d7d12266bf203f386aaddf"
+"@nestjs/testing@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-5.4.0.tgz#4728021fc4012243b4dd2ffb4228b59df7770235"
   dependencies:
     deprecate "1.0.0"
     optional "0.1.4"
@@ -520,6 +530,13 @@ axios@0.17.1:
   resolved "https://registry.npmjs.org/axios/-/axios-0.17.1.tgz#2d8e3e5d0bdbd7327f91bc814f5c57660f81824d"
   dependencies:
     follow-redirects "^1.2.5"
+    is-buffer "^1.1.5"
+
+axios@0.18.0:
+  version "0.18.0"
+  resolved "http://registry.npmjs.org/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  dependencies:
+    follow-redirects "^1.3.0"
     is-buffer "^1.1.5"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
@@ -1988,6 +2005,12 @@ flush-write-stream@^1.0.0:
 follow-redirects@^1.2.5:
   version "1.5.8"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.8.tgz#1dbfe13e45ad969f813e86c00e5296f525c885a1"
+  dependencies:
+    debug "=3.1.0"
+
+follow-redirects@^1.3.0:
+  version "1.5.9"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.9.tgz#c9ed9d748b814a39535716e531b9196a845d89c6"
   dependencies:
     debug "=3.1.0"
 
@@ -5224,9 +5247,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typeorm@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.npmjs.org/typeorm/-/typeorm-0.2.7.tgz#4bbbace80dc91b1303be13f42d44ebf01d1b2558"
+typeorm@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.npmjs.org/typeorm/-/typeorm-0.2.8.tgz#b8f7e0809ad7b2c03c03ff101fadf1b90e4083a3"
   dependencies:
     app-root-path "^2.0.1"
     buffer "^5.1.0"

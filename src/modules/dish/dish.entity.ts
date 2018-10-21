@@ -5,13 +5,13 @@ export class Dish {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 20 })
+  @Column({ charset: 'utf8', length: 20 })
   name: string;
 
   @Column()
   price: string;
 
-  @Column()
+  @Column({ charset: 'utf8', length: 20 })
   extra: string;
 
   @Column()

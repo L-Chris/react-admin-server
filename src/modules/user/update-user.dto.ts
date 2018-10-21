@@ -14,8 +14,5 @@ export class UpdateUserDto extends CreateUserDto {
   readonly password: string
 
   @IsOptional()
-  readonly phone: string
-
-  @IsOptional()
   readonly email: string
 }

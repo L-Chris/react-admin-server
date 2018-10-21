@@ -17,11 +17,12 @@ export class AuthMiddleware implements NestMiddleware {
       const { token } = cookieParser.parse(req.headers.cookie || '')
 
       if (!token) throw new HttpException('Forbiden', 403)
-      const userInfo: any = jwt.verify(token, 'react_admin')
+      const { id, account }: any = jwt.verify(token, 'react_admin')
+      if (!id || !account) return new HttpException('Forbiden', 403)
       const user = await this.userRepository.findOne({
         where: {
-          id: userInfo.id,
-          account: userInfo.account
+          id,
+          account
         }
       })
 

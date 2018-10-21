@@ -9,7 +9,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     response
       .json({
-        data: null,
+        data: {},
         status: exception.getStatus(),
         message: isString(exception.message) ? exception.message : exception.message.message,
         timestamp: Date.now()

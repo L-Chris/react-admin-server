@@ -13,4 +13,8 @@ export class MenuService {
   async findAll(): Promise<Menu[]> {
     return await this.menuRepository.find()
   }
+
+  async save(body): Promise<Menu> {
+    return await this.menuRepository.save(body)
+  }
 }

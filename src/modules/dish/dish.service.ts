@@ -13,4 +13,8 @@ export class DishService {
   async findAll(): Promise<Dish[]> {
     return await this.dishRepository.find();
   }
+
+  async save(body): Promise<Dish> {
+    return await this.dishRepository.save(body)
+  }
 }

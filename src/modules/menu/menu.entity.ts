@@ -1,12 +1,17 @@
-import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable } from "typeorm";
+import { Dish } from "modules/dish/dish.entity";
 
 @Entity()
 export class Menu {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 20 })
+  @Column({ charset: 'utf8', length: 20 })
   name: string;
+
+  @ManyToMany(type => Dish)
+  @JoinTable()
+  dishes: Dish[];
 
   @Column()
   createTime: string;
