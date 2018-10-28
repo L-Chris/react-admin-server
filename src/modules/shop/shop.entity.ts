@@ -1,23 +1,17 @@
 import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable } from "typeorm";
-import { Dish } from "modules/dish/dish.entity";
+import { Menu } from "modules/menu/menu.entity";
 
 @Entity()
-export class Order {
+export class Shop {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 20 })
+  @Column({ charset: 'utf8', length: 20 })
   name: string;
 
-  @ManyToMany(type => Dish)
+  @ManyToMany(type => Menu)
   @JoinTable()
-  dishes: Dish[];
-
-  @Column()
-  price: string;
-
-  @Column()
-  isPay: boolean;
+  menu: Menu;
 
   @Column()
   createTime: string;
