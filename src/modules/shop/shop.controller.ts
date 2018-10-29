@@ -1,4 +1,4 @@
-import { Get, Post, Controller, Body } from '@nestjs/common';
+import { Get, Post, Controller, Body, Query } from '@nestjs/common';
 import { ShopService } from './shop.service';
 import { Shop } from './shop.entity';
 import { ValidationPipe } from 'pipes/validation.pipe';
@@ -12,6 +12,11 @@ export class ShopController {
   @Get('list')
   async findAll(): Promise<Shop[]> {
     return await this.shopService.findAll();
+  }
+
+  @Get('get')
+  async findOne(@Query() query): Promise<Shop> {
+    return await this.shopService.findOne(query);
   }
 
   @Post('update')

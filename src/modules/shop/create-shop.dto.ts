@@ -1,5 +1,5 @@
-import { IsString, Length, IsOptional } from 'class-validator'
-import { Menu } from 'modules/menu/menu.entity';
+import { IsString, Length, IsArray, IsOptional } from 'class-validator'
+import { Dish } from "modules/dish/dish.entity";
 
 export class CreateShopDto {
   @IsString()
@@ -7,5 +7,6 @@ export class CreateShopDto {
   readonly name: string
 
   @IsOptional()
-  readonly menu: Menu
+  @IsArray()
+  dishes: Dish[];
 }

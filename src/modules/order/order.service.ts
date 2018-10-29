@@ -20,7 +20,7 @@ export class OrderService {
 
   async save(body): Promise<Order> {
     const { dishes: dishIds } = body
-    const dishes = await this.orderRepository.findByIds(dishIds)
+    const dishes = await this.dishRepository.findByIds(dishIds)
     body.dishes = dishes
     return await this.orderRepository.save(body)
   }

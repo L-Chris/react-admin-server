@@ -1,5 +1,6 @@
-import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable } from "typeorm";
-import { Menu } from "modules/menu/menu.entity";
+import { PrimaryGeneratedColumn, Column, Entity, JoinTable, ManyToMany, OneToMany } from "typeorm";
+import { Dish } from "modules/dish/dish.entity";
+import { Order } from "modules/order/order.entity";
 
 @Entity()
 export class Shop {
@@ -8,10 +9,13 @@ export class Shop {
 
   @Column({ charset: 'utf8', length: 20 })
   name: string;
+  
+  @OneToMany(type => Order, order => order.shop)
+  orders: Order[];
 
-  @ManyToMany(type => Menu)
+  @ManyToMany(type => Dish)
   @JoinTable()
-  menu: Menu;
+  dishes: Dish[];
 
   @Column()
   createTime: string;

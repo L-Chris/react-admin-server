@@ -1,16 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Dish } from './dish.entity';
 import { Repository } from 'typeorm';
+import { Dish } from './dish.entity';
 
 @Injectable()
 export class DishService {
   constructor(
-    @InjectRepository(Dish)
-    private readonly dishRepository: Repository<Dish>
+    @InjectRepository(Dish) private readonly dishRepository: Repository<Dish>
   ) {}
 
-  async findAll(): Promise<Dish[]> {
+  async findAll(@Query() query): Promise<Dish[]> {
     return await this.dishRepository.find();
   }
 
