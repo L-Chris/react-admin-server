@@ -1,5 +1,6 @@
-import { Module, MiddlewareConsumer } from '@nestjs/common';
+import { Module, MiddlewareConsumer, CacheModule, CacheInterceptor } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { APP_INTERCEPTOR } from '@nestjs/core'
 import { Connection } from 'typeorm';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -14,12 +15,19 @@ import { ShopController } from 'modules/shop/shop.controller';
 
 @Module({
   imports: [
+    CacheModule.register(),
     TypeOrmModule.forRoot(),
     UserModule,
     AuthModule,
     OrderModule,
     DishModule,
     ShopModule
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor
+    }
   ]
 })
 export class AppModule {

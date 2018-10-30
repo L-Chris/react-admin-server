@@ -1,14 +1,19 @@
-import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable, ManyToOne } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable, ManyToOne, OneToMany } from "typeorm";
 import { Dish } from "modules/dish/dish.entity";
 import { Shop } from "modules/shop/shop.entity";
+import { User } from "modules/user/user.entity";
+import { OrderType } from "./order-type.entity";
 
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 20 })
-  name: string;
+  @ManyToOne(type => OrderType, type => type.orders)
+  type: OrderType;
+
+  @ManyToOne(type => User, user => user.orders)
+  user: User;
 
   @ManyToOne(type => Shop, shop => shop.orders)
   shop: Shop;
@@ -18,10 +23,7 @@ export class Order {
   dishes: Dish[];
 
   @Column()
-  price: string;
-
-  @Column()
-  isPay: boolean;
+  price: number;
 
   @Column()
   createTime: string;

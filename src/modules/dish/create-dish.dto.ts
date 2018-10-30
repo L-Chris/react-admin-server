@@ -1,12 +1,12 @@
-import { IsString, Length, IsOptional, IsNumberString, MaxLength } from "class-validator";
+import { IsString, Length, IsOptional, IsNumber, MaxLength } from "class-validator";
 
 export class CreateDishDto {
   @IsString()
   @Length(3, 20)
   name: string;
 
-  @IsNumberString()
-  price: string;
+  @IsNumber()
+  price: number;
 
   @IsOptional()
   @IsString()

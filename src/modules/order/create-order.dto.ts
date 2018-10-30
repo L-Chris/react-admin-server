@@ -1,11 +1,16 @@
-import { IsString, Length, IsArray } from "class-validator";
+import { IsArray, IsOptional } from "class-validator";
 import { Dish } from "modules/dish/dish.entity";
+import { Shop } from "modules/shop/shop.entity";
+import { User } from "modules/user/user.entity";
 
 export class CreateOrderDto {
-  @IsString()
-  @Length(3, 20)
-  name: string;
+  user: User;
+
+  shop: Shop;
 
   @IsArray()
   dishes: Dish[];
+
+  @IsOptional()
+  createTime: string;
 }

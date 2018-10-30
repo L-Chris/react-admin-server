@@ -9,7 +9,7 @@ export class Shop {
 
   @Column({ charset: 'utf8', length: 20 })
   name: string;
-  
+
   @OneToMany(type => Order, order => order.shop)
   orders: Order[];
 

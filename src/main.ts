@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from 'filters/globalException.filter'
 import { TransformInterceptor } from 'interceptors/transform.interceptor';
 
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 

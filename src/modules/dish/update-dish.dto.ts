@@ -6,7 +6,7 @@ export class UpdateDishDto extends CreateDishDto {
   name: string;
 
   @IsOptional()
-  price: string;
+  price: number;
 
   @IsOptional()
   extra: string;

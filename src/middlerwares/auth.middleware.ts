@@ -27,6 +27,8 @@ export class AuthMiddleware implements NestMiddleware {
       })
 
       if (!user) throw new HttpException('Forbiden', 403)
+      req.user = user
+
       await next()
     }
   }

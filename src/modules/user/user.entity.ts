@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, OneToMany } from "typeorm";
+import { Order } from "modules/order/order.entity";
 
 @Entity()
 export class User {
@@ -19,4 +20,7 @@ export class User {
 
   @Column()
   createTime: string;
+
+  @OneToMany(type => Order, order => order.user)
+  orders: Order[];
 }

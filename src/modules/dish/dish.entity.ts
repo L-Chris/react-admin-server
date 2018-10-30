@@ -9,7 +9,7 @@ export class Dish {
   name: string;
 
   @Column()
-  price: string;
+  price: number;
 
   @Column({ charset: 'utf8', length: 20 })
   extra: string;

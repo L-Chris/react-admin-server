@@ -14,6 +14,9 @@ export class OrderService {
   async findAll(): Promise<Order[]> {
     return await this.orderRepository
       .createQueryBuilder('order')
+      .leftJoinAndSelect('order.type', 'type')
+      .leftJoinAndSelect('order.user', 'user')
+      .leftJoinAndSelect('order.shop', 'shop')
       .leftJoinAndSelect('order.dishes', 'dish')
       .getMany()
   }
@@ -22,6 +25,13 @@ export class OrderService {
     const { dishes: dishIds } = body
     const dishes = await this.dishRepository.findByIds(dishIds)
     body.dishes = dishes
+    if (!body.id) {
+      body.price = dishes.reduce((pre, _) => {
+        pre += _.price
+        return pre
+      }, 0)
+      body.createTime = Date.now().toString()
+    }
     return await this.orderRepository.save(body)
   }
 }
