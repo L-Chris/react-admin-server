@@ -14,10 +14,18 @@ export class OrderService {
   async findAll(): Promise<Order[]> {
     return await this.orderRepository
       .createQueryBuilder('order')
-      .leftJoinAndSelect('order.type', 'type')
       .leftJoinAndSelect('order.user', 'user')
       .leftJoinAndSelect('order.shop', 'shop')
       .leftJoinAndSelect('order.dishes', 'dish')
+      .getMany()
+  }
+
+  async findByTypeAndUserId ({ user, type }) {
+    return await this.orderRepository
+      .createQueryBuilder('order')
+      .leftJoinAndSelect('order.user', 'user')
+      .where('user.id = :id', { id: user.id })
+      .where('type = :type', { type })
       .getMany()
   }
 

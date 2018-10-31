@@ -1,16 +1,15 @@
-import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable, ManyToOne, OneToMany } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable, ManyToOne } from "typeorm";
 import { Dish } from "modules/dish/dish.entity";
 import { Shop } from "modules/shop/shop.entity";
 import { User } from "modules/user/user.entity";
-import { OrderType } from "./order-type.entity";
 
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => OrderType, type => type.orders)
-  type: OrderType;
+  @Column()
+  type: string;
 
   @ManyToOne(type => User, user => user.orders)
   user: User;

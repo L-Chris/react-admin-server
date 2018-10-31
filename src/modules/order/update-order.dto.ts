@@ -6,6 +6,9 @@ import { User } from "modules/user/user.entity";
 
 export class UpdateOrderDto extends CreateOrderDto {
   @IsOptional()
+  type: string;
+
+  @IsOptional()
   user: User;
 
   @IsOptional()
