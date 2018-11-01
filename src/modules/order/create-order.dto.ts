@@ -15,6 +15,8 @@ export class CreateOrderDto {
   @IsArray()
   dishes: Dish[];
 
+  price: number;
+
   @IsOptional()
   createTime: string;
 }
