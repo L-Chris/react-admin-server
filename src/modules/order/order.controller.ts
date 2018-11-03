@@ -13,8 +13,7 @@ export class OrderController {
 
   @Get('list')
   async find(@Query() query): Promise<Order[]> {
-    const { type } = query
-    return await this.orderService.find({ type });
+    return await this.orderService.find(query);
   }
 
   @Post('update')

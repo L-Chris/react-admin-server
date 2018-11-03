@@ -1,6 +1,7 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Between } from 'typeorm';
+import * as moment from 'dayjs';
 import { Order } from './order.entity';
 import { Dish } from 'modules/dish/dish.entity';
 
@@ -11,16 +12,23 @@ export class OrderService {
     @InjectRepository(Dish) private readonly dishRepository: Repository<Dish>
   ) {}
 
-  async find({ type }): Promise<Order[]> {
-    let queryBuilder = await this.orderRepository.createQueryBuilder('order')
-    if (type !== undefined) {
-      queryBuilder = queryBuilder.where('type = :type', { type })
+  async find({ type, date }): Promise<Order[]> {
+
+    const params: any = {}
+
+    if (type) params.type = type;
+
+    if (date) {
+      const formatDate = moment(date).format('YYYY-MM-DD')
+      const start = moment(formatDate)
+      const end = start.add(1, 'day')
+
+      params.createTime = Between(start.toDate().valueOf(), end.toDate().valueOf())
     }
-    return queryBuilder
-      .leftJoinAndSelect('order.user', 'user')
-      .leftJoinAndSelect('order.shop', 'shop')
-      .leftJoinAndSelect('order.dishes', 'dish')
-      .getMany()
+
+    params.relations = ['user', 'shop', 'dishes']
+
+    return await this.orderRepository.find(params)
   }
 
   async findByTypeAndUserId ({ user, type }) {
@@ -35,11 +43,13 @@ export class OrderService {
   async checkOrderTypeCount (body) {
     const { user, type } = body
     const orders = await this.findByTypeAndUserId({user, type})
-    if (type !== '0' && orders.length) throw new HttpException('已申请订单！', 204)
+    return type !== '1' && orders.length
   }
 
   async add(body): Promise<Order> {
-    this.checkOrderTypeCount(body)
+    const isOver = this.checkOrderTypeCount(body)
+    if (isOver) throw new HttpException('已申请订单！', 204)
+
     const { dishes: dishIds } = body
     const dishes = await this.dishRepository.findByIds(dishIds)
     body.dishes = dishes

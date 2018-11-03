@@ -1,5 +1,6 @@
 export enum OrderType {
-  Normal = '0',
-  Lunch = '1',
-  Dinner = '2'
+  All = '0',
+  Normal = '1',
+  Lunch = '2',
+  Dinner = '3'
 }

@@ -8,7 +8,7 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ default: '1' })
   type: string;
 
   @ManyToOne(type => User, user => user.orders)
