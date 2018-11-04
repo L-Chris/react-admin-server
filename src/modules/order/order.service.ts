@@ -14,19 +14,20 @@ export class OrderService {
 
   async find({ type, date }): Promise<Order[]> {
 
-    const params: any = {}
+    const params: any = { where: {} }
 
-    if (type) params.type = type;
+    if (type && type !== '0') {
+      params.where.type = type
+    };
+
+    params.relations = ['user', 'shop', 'dishes']
 
     if (date) {
       const formatDate = moment(date).format('YYYY-MM-DD')
       const start = moment(formatDate)
       const end = start.add(1, 'day')
-
-      params.createTime = Between(start.toDate().valueOf(), end.toDate().valueOf())
+      params.where.createTime = Between(start.toDate(), end.toDate())
     }
-
-    params.relations = ['user', 'shop', 'dishes']
 
     return await this.orderRepository.find(params)
   }
@@ -47,7 +48,7 @@ export class OrderService {
   }
 
   async add(body): Promise<Order> {
-    const isOver = this.checkOrderTypeCount(body)
+    const isOver = await this.checkOrderTypeCount(body)
     if (isOver) throw new HttpException('已申请订单！', 204)
 
     const { dishes: dishIds } = body
@@ -57,7 +58,8 @@ export class OrderService {
       pre += _.price
       return pre
     }, 0)
-    body.createTime = Date.now().toString()
+
+    body.createTime = new Date()
     return await this.orderRepository.save(body)
   }
 

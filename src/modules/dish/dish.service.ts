@@ -1,4 +1,4 @@
-import { Injectable, Query } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Dish } from './dish.entity';
@@ -9,7 +9,7 @@ export class DishService {
     @InjectRepository(Dish) private readonly dishRepository: Repository<Dish>
   ) {}
 
-  async findAll(@Query() query): Promise<Dish[]> {
+  async findAll(): Promise<Dish[]> {
     return await this.dishRepository.find();
   }
 

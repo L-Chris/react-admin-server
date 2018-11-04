@@ -18,5 +18,5 @@ export class CreateOrderDto {
   price: number;
 
   @IsOptional()
-  createTime: string;
+  createTime: Date;
 }

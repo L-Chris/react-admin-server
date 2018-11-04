@@ -8,7 +8,10 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: '1' })
+  @Column({
+    default: '1',
+    readonly: true
+  })
   type: string;
 
   @ManyToOne(type => User, user => user.orders)
@@ -24,6 +27,9 @@ export class Order {
   @Column()
   price: number;
 
-  @Column()
-  createTime: string;
+  @Column({
+    type: 'datetime',
+    readonly: true
+  })
+  createTime: Date;
 }
