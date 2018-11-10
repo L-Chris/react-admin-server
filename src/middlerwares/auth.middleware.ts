@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken'
 import * as cookieParser from 'cookie'
-import { Injectable, NestMiddleware, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, NestMiddleware, HttpException } from '@nestjs/common';
 import { User } from '../modules/user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
